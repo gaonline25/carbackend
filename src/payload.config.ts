@@ -28,6 +28,7 @@ export default buildConfig({
   cors: [
     'http://localhost:3000', // Allow your Next.js dev server
     'http://localhost:3001',
+    'https://carbackend-delta.vercel.app',
     // Add your production domain later, e.g.:
     // 'https://yourdomain.com',
   ],
@@ -67,6 +68,7 @@ export default buildConfig({
   csrf: [
     'http://localhost:3001',
     'http://localhost:3000',
+    'https://carbackend-delta.vercel.app',
     // 'https://yourdomain.com',
   ],
 })
