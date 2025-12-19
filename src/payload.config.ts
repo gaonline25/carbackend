@@ -20,6 +20,7 @@ import { WhatWeOfferComponent } from './collections/WhatWeOfferComponent'
 import { BlogPostComponentCollection } from './collections/BlogPostComponentCollection'
 import { GalleryPageComponent } from './collections/GalleryPageComponent'
 import { ContactSectionComponent } from './collections/ContactSectionComponent'
+import { FormSubmissions } from './collections/FormSubmissions'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -55,6 +56,7 @@ export default buildConfig({
     BlogPostComponentCollection,
     GalleryPageComponent,
     ContactSectionComponent,
+    FormSubmissions,
   ],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',

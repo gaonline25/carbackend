@@ -82,6 +82,7 @@ export interface Config {
     'blog-post-component': BlogPostComponent;
     'gallery-page-component': GalleryPageComponent;
     'contact-section-component': ContactSectionComponent;
+    'form-submissions': FormSubmission;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -103,6 +104,7 @@ export interface Config {
     'blog-post-component': BlogPostComponentSelect<false> | BlogPostComponentSelect<true>;
     'gallery-page-component': GalleryPageComponentSelect<false> | GalleryPageComponentSelect<true>;
     'contact-section-component': ContactSectionComponentSelect<false> | ContactSectionComponentSelect<true>;
+    'form-submissions': FormSubmissionsSelect<false> | FormSubmissionsSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -6109,6 +6111,71 @@ export interface ContactSectionComponent {
   createdAt: string;
 }
 /**
+ * Contact form submissions from the website
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "form-submissions".
+ */
+export interface FormSubmission {
+  id: string;
+  /**
+   * Type of form submission
+   */
+  formType: 'contact' | 'newsletter' | 'quote' | 'service';
+  name: string;
+  email: string;
+  /**
+   * Contact phone number
+   */
+  phone?: string | null;
+  /**
+   * Subject or reason for contact
+   */
+  subject?: string | null;
+  /**
+   * Message content
+   */
+  message?: string | null;
+  /**
+   * Store any additional custom form fields as JSON
+   */
+  additionalFields?:
+    | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
+  /**
+   * Status of the submission
+   */
+  status: 'new' | 'read' | 'in-progress' | 'resolved' | 'spam';
+  /**
+   * Internal notes about this submission
+   */
+  notes?: string | null;
+  /**
+   * Team member assigned to handle this submission
+   */
+  assignedTo?: (string | null) | User;
+  /**
+   * IP address of the submitter
+   */
+  ipAddress?: string | null;
+  /**
+   * Browser/device information
+   */
+  userAgent?: string | null;
+  /**
+   * Page referrer
+   */
+  referrer?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
@@ -6174,6 +6241,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'contact-section-component';
         value: string | ContactSectionComponent;
+      } | null)
+    | ({
+        relationTo: 'form-submissions';
+        value: string | FormSubmission;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -10256,6 +10327,27 @@ export interface ContactSectionComponentSelect<T extends boolean = true> {
             };
       };
   isActive?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "form-submissions_select".
+ */
+export interface FormSubmissionsSelect<T extends boolean = true> {
+  formType?: T;
+  name?: T;
+  email?: T;
+  phone?: T;
+  subject?: T;
+  message?: T;
+  additionalFields?: T;
+  status?: T;
+  notes?: T;
+  assignedTo?: T;
+  ipAddress?: T;
+  userAgent?: T;
+  referrer?: T;
   updatedAt?: T;
   createdAt?: T;
 }
