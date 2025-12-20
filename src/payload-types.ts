@@ -83,6 +83,7 @@ export interface Config {
     'gallery-page-component': GalleryPageComponent;
     'contact-section-component': ContactSectionComponent;
     'form-submissions': FormSubmission;
+    'blog-listing-banner': BlogListingBanner;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -105,6 +106,7 @@ export interface Config {
     'gallery-page-component': GalleryPageComponentSelect<false> | GalleryPageComponentSelect<true>;
     'contact-section-component': ContactSectionComponentSelect<false> | ContactSectionComponentSelect<true>;
     'form-submissions': FormSubmissionsSelect<false> | FormSubmissionsSelect<true>;
+    'blog-listing-banner': BlogListingBannerSelect<false> | BlogListingBannerSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -6177,6 +6179,114 @@ export interface FormSubmission {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "blog-listing-banner".
+ */
+export interface BlogListingBanner {
+  id: string;
+  title: string;
+  /**
+   * Only one banner should be active at a time
+   */
+  isActive?: boolean | null;
+  titleSection?: {
+    /**
+     * Webflow animation ID
+     */
+    dataWId?: string | null;
+    className?: string | null;
+    titleClassName?: string | null;
+    /**
+     * CSS color value
+     */
+    titleColor?: string | null;
+    /**
+     * CSS font-size value
+     */
+    titleFontSize?: string | null;
+  };
+  backgroundSection: {
+    clipPhotoClassName?: string | null;
+    /**
+     * Webflow animation ID for background
+     */
+    bannerDataWId?: string | null;
+    backgroundImage: string | Media;
+    backgroundImageUrl?: string | null;
+    imageAlt?: string | null;
+    bannerClassName?: string | null;
+    transform?: {
+      /**
+       * Scale value for zoom effect (e.g., 1.15)
+       */
+      scale?: string | null;
+      translateX?: string | null;
+      translateY?: string | null;
+      translateZ?: string | null;
+      rotateX?: string | null;
+      rotateY?: string | null;
+      rotateZ?: string | null;
+      skewX?: string | null;
+      skewY?: string | null;
+    };
+  };
+  overlaySection?: {
+    showOverlay?: boolean | null;
+    overlayClassName?: string | null;
+    gradientClassName?: string | null;
+    /**
+     * CSS color with opacity (e.g., rgba(0,0,0,0.4))
+     */
+    overlayColor?: string | null;
+    /**
+     * Custom gradient color if needed
+     */
+    gradientColor?: string | null;
+  };
+  containerSettings?: {
+    baseContainerClassName?: string | null;
+    outerClassName?: string | null;
+    /**
+     * Background color for the entire section
+     */
+    backgroundColor?: string | null;
+    /**
+     * CSS padding value
+     */
+    padding?: string | null;
+    /**
+     * CSS height value (e.g., 400px, 50vh)
+     */
+    height?: string | null;
+  };
+  animationSettings?: {
+    enableAnimations?: boolean | null;
+    /**
+     * Duration in seconds or milliseconds
+     */
+    animationDuration?: string | null;
+    animationDelay?: string | null;
+    animationEasing?: string | null;
+  };
+  mobileSettings?: {
+    /**
+     * Optional separate image for mobile devices
+     */
+    mobileBackgroundImage?: (string | null) | Media;
+    /**
+     * Font size for mobile devices
+     */
+    mobileTitleFontSize?: string | null;
+    /**
+     * Height for mobile devices
+     */
+    mobileHeight?: string | null;
+    mobileScale?: string | null;
+  };
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
@@ -6245,6 +6355,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'form-submissions';
         value: string | FormSubmission;
+      } | null)
+    | ({
+        relationTo: 'blog-listing-banner';
+        value: string | BlogListingBanner;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -10348,6 +10462,82 @@ export interface FormSubmissionsSelect<T extends boolean = true> {
   ipAddress?: T;
   userAgent?: T;
   referrer?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "blog-listing-banner_select".
+ */
+export interface BlogListingBannerSelect<T extends boolean = true> {
+  title?: T;
+  isActive?: T;
+  titleSection?:
+    | T
+    | {
+        dataWId?: T;
+        className?: T;
+        titleClassName?: T;
+        titleColor?: T;
+        titleFontSize?: T;
+      };
+  backgroundSection?:
+    | T
+    | {
+        clipPhotoClassName?: T;
+        bannerDataWId?: T;
+        backgroundImage?: T;
+        backgroundImageUrl?: T;
+        imageAlt?: T;
+        bannerClassName?: T;
+        transform?:
+          | T
+          | {
+              scale?: T;
+              translateX?: T;
+              translateY?: T;
+              translateZ?: T;
+              rotateX?: T;
+              rotateY?: T;
+              rotateZ?: T;
+              skewX?: T;
+              skewY?: T;
+            };
+      };
+  overlaySection?:
+    | T
+    | {
+        showOverlay?: T;
+        overlayClassName?: T;
+        gradientClassName?: T;
+        overlayColor?: T;
+        gradientColor?: T;
+      };
+  containerSettings?:
+    | T
+    | {
+        baseContainerClassName?: T;
+        outerClassName?: T;
+        backgroundColor?: T;
+        padding?: T;
+        height?: T;
+      };
+  animationSettings?:
+    | T
+    | {
+        enableAnimations?: T;
+        animationDuration?: T;
+        animationDelay?: T;
+        animationEasing?: T;
+      };
+  mobileSettings?:
+    | T
+    | {
+        mobileBackgroundImage?: T;
+        mobileTitleFontSize?: T;
+        mobileHeight?: T;
+        mobileScale?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
 }
