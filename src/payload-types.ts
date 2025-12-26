@@ -3378,153 +3378,59 @@ export interface AboutHeroComponent {
       | null;
     bannerImage?: {
       show?: boolean | null;
+      image?: (string | null) | Media;
       className?: string | null;
       overlayClass?: string | null;
       overlayGradientClass?: string | null;
     };
   };
-  tabsSection?: {
+  contentSection: {
     show?: boolean | null;
     className?: string | null;
     backgroundColor?: string | null;
     containerClass?: string | null;
-    tabsWrapperClass?: string | null;
-    tabMenuStyling?: {
-      tabMenuClass?: string | null;
-      tabLinkClass?: string | null;
-      activeTabColor?: string | null;
-      inactiveTabColor?: string | null;
-    };
+    innerWrapperClass?: string | null;
+    contentWrapperClass?: string | null;
+    contentWrapperId?: string | null;
+    subtitle?: string | null;
+    subtitleClass?: string | null;
     /**
-     * Drag to reorder tabs
+     * Main content for the about section with full formatting options
      */
-    tabs?:
-      | {
-          /**
-           * Unique identifier for this tab (e.g., tab-1)
-           */
-          tabId: string;
-          tabName: string;
-          /**
-           * e.g., one, two, three, four
-           */
-          circleClass?: string | null;
-          topSection?: {
-            leftContent?: {
-              subtitle?: string | null;
-              subtitleClass?: string | null;
-              subtitleColor?: string | null;
-              title?: string | null;
-              titleClass?: string | null;
-              titleColor?: string | null;
-              /**
-               * Drag to reorder quick links
-               */
-              quickLinks?:
-                | {
-                    icon?: (string | null) | Media;
-                    iconUrl?: string | null;
-                    iconAlt?: string | null;
-                    text: string;
-                    url: string;
-                    openInNewTab?: boolean | null;
-                    textColor?: string | null;
-                    hoverColor?: string | null;
-                    id?: string | null;
-                  }[]
-                | null;
-            };
-            rightContent?: {
-              mediaType?: ('video' | 'image') | null;
-              videoUrl?: string | null;
-              videoWebmUrl?: string | null;
-              videoPosterUrl?: string | null;
-              autoplay?: boolean | null;
-              loop?: boolean | null;
-              muted?: boolean | null;
-              image?: (string | null) | Media;
-              imageAlt?: string | null;
-              className?: string | null;
-              overlayClass?: string | null;
-            };
-          };
-          servicesGrid?: {
-            show?: boolean | null;
-            gridClass?: string | null;
-            /**
-             * Drag to reorder services
-             */
-            services?:
-              | {
-                  title: string;
-                  description?: string | null;
-                  url: string;
-                  titleColor?: string | null;
-                  titleHoverColor?: string | null;
-                  descriptionColor?: string | null;
-                  id?: string | null;
-                }[]
-              | null;
-          };
-          ctaSection?: {
-            show?: boolean | null;
-            backgroundColor?: string | null;
-            title?: string | null;
-            titleClass?: string | null;
-            titleColor?: string | null;
-            buttonText?: string | null;
-            buttonUrl?: string | null;
-            buttonClass?: string | null;
-            buttonBackgroundColor?: string | null;
-            buttonTextColor?: string | null;
-          };
-          id?: string | null;
-        }[]
-      | null;
-    indicator?: {
+    richTextContent: {
+      root: {
+        type: string;
+        children: {
+          type: any;
+          version: number;
+          [k: string]: unknown;
+        }[];
+        direction: ('ltr' | 'rtl') | null;
+        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+        indent: number;
+        version: number;
+      };
+      [k: string]: unknown;
+    };
+    richTextClass?: string | null;
+    bottomGradient?: {
       show?: boolean | null;
-      className?: string | null;
-      fillClass?: string | null;
-      fillColor?: string | null;
-      backgroundColor?: string | null;
+      wrapperClass?: string | null;
+      gradients?:
+        | {
+            className: string;
+            dataWId?: string | null;
+            id?: string | null;
+          }[]
+        | null;
     };
-  };
-  teamSection?: {
-    /**
-     * Currently commented out in the component
-     */
-    show?: boolean | null;
-    className?: string | null;
-    backgroundColor?: string | null;
-    /**
-     * Drag to reorder team members
-     */
-    teamMembers?:
-      | {
-          name: string;
-          position: string;
-          photo?: (string | null) | Media;
-          /**
-           * e.g., team-img-2, team-img-3, team-img-4
-           */
-          photoClass?: string | null;
-          socialLinks?:
-            | {
-                platform: 'facebook' | 'twitter' | 'dribbble' | 'linkedin' | 'instagram';
-                url: string;
-                id?: string | null;
-              }[]
-            | null;
-          id?: string | null;
-        }[]
-      | null;
   };
   /**
    * Drag to reorder sections on the page
    */
   sectionOrder?:
     | {
-        section: 'gradientWrapper' | 'heroBanner' | 'tabsSection' | 'teamSection';
+        section: 'gradientWrapper' | 'heroBanner' | 'contentSection';
         id?: string | null;
       }[]
     | null;
@@ -3570,100 +3476,6 @@ export interface AboutHeroComponent {
      */
     linkHoverColor?: string | null;
   };
-  typographySettings?: {
-    h1FontSize?: string | null;
-    h1Color?: string | null;
-    h1FontWeight?: string | null;
-    h2FontSize?: string | null;
-    h2Color?: string | null;
-    h2FontWeight?: string | null;
-    h3FontSize?: string | null;
-    h3Color?: string | null;
-    h3FontWeight?: string | null;
-    h4FontSize?: string | null;
-    h4Color?: string | null;
-    h5FontSize?: string | null;
-    h5Color?: string | null;
-    h6FontSize?: string | null;
-    h6Color?: string | null;
-    bodyFontSize?: string | null;
-    bodyLineHeight?: string | null;
-    paragraphSpacing?: string | null;
-    /**
-     * CSS list-style-type (e.g., disc, circle, square)
-     */
-    listStyleType?: string | null;
-    listMarginLeft?: string | null;
-  };
-  layoutSettings?: {
-    /**
-     * Gap between grid items (e.g., 30px, 2rem)
-     */
-    gridGap?: string | null;
-    /**
-     * Gap between columns (e.g., 30px, 2rem)
-     */
-    columnGap?: string | null;
-    /**
-     * Gap between rows (e.g., 20px, 1.5rem)
-     */
-    rowGap?: string | null;
-    imageObjectFit?: ('cover' | 'contain' | 'fill' | 'none') | null;
-    /**
-     * Default border radius for elements
-     */
-    borderRadius?: string | null;
-  };
-  animationSettings?: {
-    enableAnimations?: boolean | null;
-    /**
-     * Duration for fade in animations (e.g., 1s, 2s)
-     */
-    fadeInDuration?: string | null;
-    /**
-     * Delay before fade in starts (e.g., 0.2s)
-     */
-    fadeInDelay?: string | null;
-    /**
-     * Duration for slide animations
-     */
-    slideInDuration?: string | null;
-    /**
-     * Duration for scale animations
-     */
-    scaleInDuration?: string | null;
-    /**
-     * CSS easing function
-     */
-    animationEasing?: string | null;
-    hoverTransitionDuration?: string | null;
-  };
-  mobileSettings?: {
-    /**
-     * Screen width for mobile (e.g., 768px)
-     */
-    mobileBreakpoint?: string | null;
-    /**
-     * Screen width for tablet (e.g., 1024px)
-     */
-    tabletBreakpoint?: string | null;
-    /**
-     * Percentage adjustment for mobile fonts (e.g., 90%)
-     */
-    mobileFontSizeAdjustment?: string | null;
-    /**
-     * Percentage adjustment for mobile spacing
-     */
-    mobileSpacingAdjustment?: string | null;
-    /**
-     * Automatically stack sections vertically on mobile devices
-     */
-    mobileStackSections?: boolean | null;
-    /**
-     * Convert tab layout to accordion for mobile
-     */
-    hideTabsOnMobile?: boolean | null;
-  };
   seoSettings?: {
     metaTitle?: string | null;
     metaDescription?: string | null;
@@ -3674,32 +3486,6 @@ export interface AboutHeroComponent {
     keywords?: string | null;
     canonicalUrl?: string | null;
     robots?: ('index,follow' | 'noindex,follow' | 'index,nofollow' | 'noindex,nofollow') | null;
-  };
-  advancedSettings?: {
-    /**
-     * Add custom CSS styles for this page
-     */
-    customCSS?: string | null;
-    /**
-     * Add custom JavaScript code for this page
-     */
-    customJS?: string | null;
-    lazyLoadImages?: boolean | null;
-    /**
-     * Preload video content for better performance
-     */
-    preloadVideos?: boolean | null;
-    enableSmoothScroll?: boolean | null;
-  };
-  accessibilitySettings?: {
-    skipToContent?: boolean | null;
-    ariaLabelsEnabled?: boolean | null;
-    altTextRequired?: boolean | null;
-    /**
-     * Color for focus outlines (accessibility)
-     */
-    focusVisibleColor?: string | null;
-    keyboardNavigationEnabled?: boolean | null;
   };
   contactInfo?: {
     phone?: string | null;
@@ -8633,139 +8419,38 @@ export interface AboutHeroComponentSelect<T extends boolean = true> {
           | T
           | {
               show?: T;
+              image?: T;
               className?: T;
               overlayClass?: T;
               overlayGradientClass?: T;
             };
       };
-  tabsSection?:
+  contentSection?:
     | T
     | {
         show?: T;
         className?: T;
         backgroundColor?: T;
         containerClass?: T;
-        tabsWrapperClass?: T;
-        tabMenuStyling?:
-          | T
-          | {
-              tabMenuClass?: T;
-              tabLinkClass?: T;
-              activeTabColor?: T;
-              inactiveTabColor?: T;
-            };
-        tabs?:
-          | T
-          | {
-              tabId?: T;
-              tabName?: T;
-              circleClass?: T;
-              topSection?:
-                | T
-                | {
-                    leftContent?:
-                      | T
-                      | {
-                          subtitle?: T;
-                          subtitleClass?: T;
-                          subtitleColor?: T;
-                          title?: T;
-                          titleClass?: T;
-                          titleColor?: T;
-                          quickLinks?:
-                            | T
-                            | {
-                                icon?: T;
-                                iconUrl?: T;
-                                iconAlt?: T;
-                                text?: T;
-                                url?: T;
-                                openInNewTab?: T;
-                                textColor?: T;
-                                hoverColor?: T;
-                                id?: T;
-                              };
-                        };
-                    rightContent?:
-                      | T
-                      | {
-                          mediaType?: T;
-                          videoUrl?: T;
-                          videoWebmUrl?: T;
-                          videoPosterUrl?: T;
-                          autoplay?: T;
-                          loop?: T;
-                          muted?: T;
-                          image?: T;
-                          imageAlt?: T;
-                          className?: T;
-                          overlayClass?: T;
-                        };
-                  };
-              servicesGrid?:
-                | T
-                | {
-                    show?: T;
-                    gridClass?: T;
-                    services?:
-                      | T
-                      | {
-                          title?: T;
-                          description?: T;
-                          url?: T;
-                          titleColor?: T;
-                          titleHoverColor?: T;
-                          descriptionColor?: T;
-                          id?: T;
-                        };
-                  };
-              ctaSection?:
-                | T
-                | {
-                    show?: T;
-                    backgroundColor?: T;
-                    title?: T;
-                    titleClass?: T;
-                    titleColor?: T;
-                    buttonText?: T;
-                    buttonUrl?: T;
-                    buttonClass?: T;
-                    buttonBackgroundColor?: T;
-                    buttonTextColor?: T;
-                  };
-              id?: T;
-            };
-        indicator?:
+        innerWrapperClass?: T;
+        contentWrapperClass?: T;
+        contentWrapperId?: T;
+        subtitle?: T;
+        subtitleClass?: T;
+        richTextContent?: T;
+        richTextClass?: T;
+        bottomGradient?:
           | T
           | {
               show?: T;
-              className?: T;
-              fillClass?: T;
-              fillColor?: T;
-              backgroundColor?: T;
-            };
-      };
-  teamSection?:
-    | T
-    | {
-        show?: T;
-        className?: T;
-        backgroundColor?: T;
-        teamMembers?:
-          | T
-          | {
-              name?: T;
-              position?: T;
-              photo?: T;
-              photoClass?: T;
-              socialLinks?:
+              wrapperClass?: T;
+              gradients?:
                 | T
                 | {
-                    platform?: T;
-                    url?: T;
+                    className?: T;
+                    dataWId?: T;
                     id?: T;
                   };
-              id?: T;
             };
       };
   sectionOrder?:
@@ -8788,60 +8473,6 @@ export interface AboutHeroComponentSelect<T extends boolean = true> {
         linkColor?: T;
         linkHoverColor?: T;
       };
-  typographySettings?:
-    | T
-    | {
-        h1FontSize?: T;
-        h1Color?: T;
-        h1FontWeight?: T;
-        h2FontSize?: T;
-        h2Color?: T;
-        h2FontWeight?: T;
-        h3FontSize?: T;
-        h3Color?: T;
-        h3FontWeight?: T;
-        h4FontSize?: T;
-        h4Color?: T;
-        h5FontSize?: T;
-        h5Color?: T;
-        h6FontSize?: T;
-        h6Color?: T;
-        bodyFontSize?: T;
-        bodyLineHeight?: T;
-        paragraphSpacing?: T;
-        listStyleType?: T;
-        listMarginLeft?: T;
-      };
-  layoutSettings?:
-    | T
-    | {
-        gridGap?: T;
-        columnGap?: T;
-        rowGap?: T;
-        imageObjectFit?: T;
-        borderRadius?: T;
-      };
-  animationSettings?:
-    | T
-    | {
-        enableAnimations?: T;
-        fadeInDuration?: T;
-        fadeInDelay?: T;
-        slideInDuration?: T;
-        scaleInDuration?: T;
-        animationEasing?: T;
-        hoverTransitionDuration?: T;
-      };
-  mobileSettings?:
-    | T
-    | {
-        mobileBreakpoint?: T;
-        tabletBreakpoint?: T;
-        mobileFontSizeAdjustment?: T;
-        mobileSpacingAdjustment?: T;
-        mobileStackSections?: T;
-        hideTabsOnMobile?: T;
-      };
   seoSettings?:
     | T
     | {
@@ -8851,24 +8482,6 @@ export interface AboutHeroComponentSelect<T extends boolean = true> {
         keywords?: T;
         canonicalUrl?: T;
         robots?: T;
-      };
-  advancedSettings?:
-    | T
-    | {
-        customCSS?: T;
-        customJS?: T;
-        lazyLoadImages?: T;
-        preloadVideos?: T;
-        enableSmoothScroll?: T;
-      };
-  accessibilitySettings?:
-    | T
-    | {
-        skipToContent?: T;
-        ariaLabelsEnabled?: T;
-        altTextRequired?: T;
-        focusVisibleColor?: T;
-        keyboardNavigationEnabled?: T;
       };
   contactInfo?:
     | T
