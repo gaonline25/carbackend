@@ -34,6 +34,8 @@ export default buildConfig({
     'http://localhost:3001',
     'https://carbackend-delta.vercel.app',
     'https://carfrontend-tawny.vercel.app',
+    'https://www.promasters.net',
+    'https://promasters.net',
     // Add your production domain later, e.g.:
     // 'https://yourdomain.com',
   ],
@@ -78,6 +80,8 @@ export default buildConfig({
     'http://localhost:3000',
     'https://carbackend-delta.vercel.app',
     'https://carfrontend-tawny.vercel.app',
+    'https://www.promasters.net',
+    'https://promasters.net',
     // 'https://yourdomain.com',
   ],
 })
